@@ -14,6 +14,9 @@ public class Solution {
         StringBuilder result = new StringBuilder();
         boolean inSpaceFlag = false;
 
+        //If you find a space and the flag is true, delete all to the first character.
+        // If the flag is false, add to the builder
+        // Else add to the builder
         while (!queue.isEmpty()) {
             if(queue.peek() == ' ') {
                 if(inSpaceFlag) {

@@ -1,13 +1,11 @@
 package com.company;
 
 
-import java.util.Optional;
-
 public class MyQueue<T> {
 
     private Node<T> head;
 
-    private class Node<E> {
+    private static class Node<E> { // static because must not have access to external fields
         E data;
         Node<E> next;
 
@@ -20,7 +18,7 @@ public class MyQueue<T> {
         }
     }
 
-    //Returns true if this list contains no elements.
+    //Returns true if this queue contains no elements.
     public boolean isEmpty() {
         if(head == null) {
             return true;
@@ -28,8 +26,8 @@ public class MyQueue<T> {
             return false;
         }
     }
-
-    public void push(T data) { // add new element
+    // add new element
+    public void push(T data) {
         Node<T> newNode = new Node<>(data);
         Node<T> currentNode = head;
 
@@ -41,8 +39,8 @@ public class MyQueue<T> {
             } currentNode.next = newNode;
         }
     }
-
-    public T peek() { // return head
+    // return head
+    public T peek() {
         if(head != null) {
             return head.data;
         }
@@ -50,8 +48,8 @@ public class MyQueue<T> {
             throw new ArrayIndexOutOfBoundsException("Queue is empty");
         }
     }
-
-    public T pop() { // return head and delete
+    // return head and delete
+    public T pop() {
         if(head != null) {
             var result = head.data;
             head = head.next;
@@ -61,6 +59,7 @@ public class MyQueue<T> {
         }
     }
 
+    @Deprecated
     public void printQueue() {
         Node<T> currentNode = head;
 

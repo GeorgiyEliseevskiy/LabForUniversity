@@ -20,6 +20,7 @@ public class Main {
             System.out.println("Hello. Choice necessary decision \n" +
                     "1- First Laboratory work");
             answerForPanel = inputIsCorrect();
+
                 switch (answerForPanel) {
                     case '1':
                         System.out.println("Please, choosing an input method \n 1- keyboard input \n 2- file input");
@@ -29,24 +30,28 @@ public class Main {
                             String text = scanner.nextLine();
                             Solution.solutionForFirstLab(text);
                         }
+
                         else if(answerForPanel == '2') {
 
                             Path path = Paths.get("C:\\Users\\Valcorian\\Desktop\\FileForLab1.txt");
-                            List<String> lines = new ArrayList<>();
+                            List<String> linesFromFile = new ArrayList<>();
+
                             try {
-                                lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+                                linesFromFile = Files.readAllLines(path, StandardCharsets.UTF_8);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            String text = lines.stream().collect(Collectors.joining());
+                            String text = linesFromFile.stream().collect(Collectors.joining());
                             Solution.solutionForFirstLab(text);
                         }
-                        flagWork = false;
+                        flagWork = false; //TODO When adding new lab work, change
                         break;
                 }
         }
     }
 
+    // Entering and verifying the correct value
+    // if digit: return value | else infinite while until the correct value is entered
     public static char inputIsCorrect() {
         String answerForPanel = scanner.nextLine();
         if(Character.isDigit(answerForPanel.charAt(0))) {
