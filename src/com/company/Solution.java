@@ -1,5 +1,8 @@
 package com.company;
 
+import com.company.model.BinaryTree;
+import com.company.model.MyQueue;
+
 public class Solution {
 
     // Solution to the problem:
