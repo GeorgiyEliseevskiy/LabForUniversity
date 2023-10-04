@@ -5,6 +5,7 @@ public class Solution {
     // Solution to the problem:
     // "Используя очередь, отредактировать текст, оставляя один пробел в каждой серии пробелов"
     public static void solutionForFirstLab(String text) throws IllegalArgumentException, ArrayIndexOutOfBoundsException{
+
         MyQueue<Character> queue = new MyQueue<>();
 
         for(Character c : text.toCharArray()) {
@@ -34,6 +35,20 @@ public class Solution {
             }
         }
         System.out.println(result.toString());
+    }
+
+    // Solution to the problem:
+    // Дано бинарное дерево. Найти поддерево не включающее ни одну из заданных вершин.
+    public static void solutionForThirdLab(int[] valueBinaryTree, int[] excludedNodes) {
+        BinaryTree binaryTree = new BinaryTree();
+
+        for(int i : valueBinaryTree) {
+            binaryTree.insert(i);
+        }
+        binaryTree.printTree();
+
+        BinaryTree resultTree = binaryTree.findSubtreeExcludingNodes(excludedNodes);
+        resultTree.printTree();
     }
 }
 

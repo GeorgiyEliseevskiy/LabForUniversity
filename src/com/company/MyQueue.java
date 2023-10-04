@@ -4,10 +4,10 @@ package com.company;
 public class MyQueue<T> {
 
     private Node<T> head;
-
     private static class Node<E> { // static because must not have access to external fields
         E data;
         Node<E> next;
+
 
         public Node(E data) {
             if (data == null) {
@@ -26,6 +26,7 @@ public class MyQueue<T> {
             return false;
         }
     }
+
     // add new element
     public void push(T data) {
         Node<T> newNode = new Node<>(data);
