@@ -16,8 +16,10 @@ import static com.company.SubtreeFinder.*;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+
         boolean flagWork = true;
         char answerForPanel;
+
 
 
         while (flagWork) {
@@ -125,6 +127,19 @@ public class Main {
                         printTree(subtree);
                         System.out.println();
                     }
+                    flagWork = false;
+                    break;
+                case '6':
+                    System.out.println("Input size arr: ");
+                    int size = inputIntWithValidation();
+                    int[] arr = new int[size];
+
+                    for (int i = 0; i < size; i++) {
+                        System.out.print("Element " + (i + 1) + ": ");
+                        arr[i] = scanner.nextInt();
+                    }
+                    Solution.quickSort(arr, 0, arr.length-1);
+                    Arrays.stream(arr).forEach(System.out::println);
                     flagWork = false;
                     break;
             }

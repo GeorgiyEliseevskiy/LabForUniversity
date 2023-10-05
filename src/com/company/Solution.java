@@ -53,5 +53,47 @@ public class Solution {
         BinaryTree resultTree = binaryTree.findSubtreeExcludingNodes(excludedNodes);
         resultTree.printTree();
     }
+
+
+    // Solution to the problem:
+    // Задача 14. Реализовать «быструю» сортировку
+    public static void quickSort(int[]arr, int left, int right) {
+
+        if(arr.length==0 || left >= right) {
+            return;
+        }
+
+        int pivot = arr[(left + right)/2];
+        int leftMarker = left;
+        int rightMarker = right;
+
+        // Перекладываем элементы вправо или влево от опорного
+        while (leftMarker <= rightMarker) {
+
+            while (arr[leftMarker] < pivot) leftMarker++;
+            while (arr[rightMarker] > pivot) rightMarker--;
+
+            // Если слева и справо не соответствие и левый меньше правого,
+            // то меняем элементы местами
+            if(leftMarker<= rightMarker) {
+                int temp = arr[leftMarker];
+                arr[leftMarker] = arr[rightMarker];
+                arr[rightMarker] = temp;
+
+                leftMarker++;
+                rightMarker--;
+            }
+        }
+
+        //3 Рекурсия для сортировки левой и правой части
+        if(left < rightMarker) {
+            quickSort(arr, left, rightMarker);
+        }
+        if(right > leftMarker) {
+            quickSort(arr, leftMarker, right);
+        }
+
+    }
+
 }
 
