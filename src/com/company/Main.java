@@ -10,6 +10,8 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static com.company.SubtreeFinder.*;
+
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
@@ -17,23 +19,13 @@ public class Main {
         boolean flagWork = true;
         char answerForPanel;
 
-       /* BinaryTree binaryTree = new BinaryTree();
-        binaryTree.insert(2);
-        binaryTree.insert(12);
-        binaryTree.insert(1);
-        binaryTree.insert(10);
-        binaryTree.insert(9);
-
-        binaryTree.printTree();
-        int[] excludedNodses = {12};
-        BinaryTree resultTree = binaryTree.findSubtreeExcludingNodes(excludedNodses);
-        resultTree.printTree();*/
 
         while (flagWork) {
             System.out.println("Hello. Choice necessary decision \n" +
                     "1- First Laboratory work" +
                     "\n2- Second Laboratory work" +
-                    "\n3- Third Laboratory work");
+                    "\n3- Third Laboratory work" +
+                    "\n4- Fourth Laboratory work");
             answerForPanel = inputIsCorrect();
 
             switch (answerForPanel) {
@@ -122,12 +114,25 @@ public class Main {
 
                     flagWork = false;
                     break;
+                case '4':
+                    TreeNode root = buildTree();
+                    System.out.println("Введите структуру поддерева для поиска:");
+                    TreeNode target = buildTree();
+
+                    List<TreeNode> matchingSubtrees = findSubtrees(root, target);
+                    System.out.println("Совпадающие поддеревья:");
+                    for (TreeNode subtree : matchingSubtrees) {
+                        printTree(subtree);
+                        System.out.println();
+                    }
+                    flagWork = false;
+                    break;
             }
         }
     }
 
     // Entering and verifying the correct value
-    private static int inputIntWithValidation() {
+    public static int inputIntWithValidation() {
         int value = 0;
         boolean inputValid = false;
 
