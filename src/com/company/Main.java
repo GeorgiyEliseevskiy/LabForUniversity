@@ -7,7 +7,11 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static com.company.SubtreeFinder.*;
@@ -15,11 +19,11 @@ import static com.company.SubtreeFinder.*;
 
 public class Main {
     static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         boolean flagWork = true;
         char answerForPanel;
-
 
 
         while (flagWork) {
@@ -27,7 +31,9 @@ public class Main {
                     "1- First Laboratory work" +
                     "\n2- Second Laboratory work" +
                     "\n3- Third Laboratory work" +
-                    "\n4- Fourth Laboratory work");
+                    "\n4- Fourth Laboratory work" +
+                    "\n5- Fifth Laboratory work" +
+                    "\n6- Sixth Laboratory work");
             answerForPanel = inputIsCorrect();
 
             switch (answerForPanel) {
@@ -99,7 +105,7 @@ public class Main {
                     int[] arrExcludeNodes = new int[countElementToDelete];
 
                     // input elements to delete and check validity(contains in valueBinaryTree)
-                    for (int i = 0; i<countElementToDelete; i++) {
+                    for (int i = 0; i < countElementToDelete; i++) {
                         System.out.println("Input element which contains in tree: ");
                         element = inputIntWithValidation();
 
@@ -112,10 +118,11 @@ public class Main {
                     }
 
                     Solution.solutionForThirdLab(valueBinaryTree.stream().mapToInt(i -> i).toArray(),
-                                    arrExcludeNodes);
+                            arrExcludeNodes);
 
                     flagWork = false;
                     break;
+
                 case '4':
                     TreeNode root = buildTree();
                     System.out.println("Введите структуру поддерева для поиска:");
@@ -129,6 +136,27 @@ public class Main {
                     }
                     flagWork = false;
                     break;
+
+                case '5':
+                    System.out.println("Input ");
+                    MyHashTable<String, Integer> myHashTable = new MyHashTable<>();
+                    System.out.print("Enter n elements into hashTable: ");
+                    int n = inputIsCorrect();
+                    String phoneNumber;
+                    int value;
+
+                    for (int i = 0; i < n; i++) {
+                        System.out.println("Enter the phone number: ");
+                        phoneNumber = inputCorrectPhoneNumber();
+                        System.out.println("Enter the value: ");
+                        value = inputIsCorrect();
+                        myHashTable.put(phoneNumber, value);
+                    }
+
+                    myHashTable.printTable();
+
+                    flagWork = false;
+                    break;
                 case '6':
                     System.out.println("Input size arr: ");
                     int size = inputIntWithValidation();
@@ -138,8 +166,13 @@ public class Main {
                         System.out.print("Element " + (i + 1) + ": ");
                         arr[i] = scanner.nextInt();
                     }
-                    Solution.quickSort(arr, 0, arr.length-1);
+                    Solution.quickSort(arr, 0, arr.length - 1);
                     Arrays.stream(arr).forEach(System.out::println);
+                    flagWork = false;
+                    break;
+
+                default:
+                    System.out.println("Incorrect number laboratory");
                     flagWork = false;
                     break;
             }
@@ -157,7 +190,7 @@ public class Main {
                 inputValid = true;
             } else {
                 System.out.println("Please, input the digit:");
-                scanner.nextLine(); // Очистка буфера ввода
+                scanner.nextLine();
             }
         }
 
@@ -168,16 +201,38 @@ public class Main {
     // if digit: return value | else infinite while until the correct value is entered
     public static char inputIsCorrect() {
         String answerForPanel = scanner.nextLine();
-        if(Character.isDigit(answerForPanel.charAt(0))) {
-            return answerForPanel.charAt(0);
-        }
-        else {
-            while (!Character.isDigit(answerForPanel.charAt(0))) {
-                System.out.println("Please, input the digit");
-                answerForPanel = scanner.nextLine();
+        try {
+            if (Character.isDigit(answerForPanel.charAt(0))) {
+                return answerForPanel.charAt(0);
+            } else {
+                while (!Character.isDigit(answerForPanel.charAt(0))) {
+                    System.out.println("Please, input the digit");
+                    answerForPanel = scanner.nextLine();
+                }
+                return answerForPanel.charAt(0);
             }
-            return answerForPanel.charAt(0);
+        } catch (StringIndexOutOfBoundsException c) {
+            System.out.println("bad data");
         }
+        return '9';
+    }
+
+
+
+
+    // Entering and verifying the correct phone number with regex
+    public static String inputCorrectPhoneNumber() {
+        String regex = "^\\d{10}$";
+        Pattern pattern = Pattern.compile(regex);
+        String phoneNumber;
+
+        do {
+            System.out.println("Enter the phone number(10 digits):");
+            phoneNumber = scanner.nextLine();
+        }
+        while (!pattern.matcher(phoneNumber).matches());
+
+        return phoneNumber;
     }
 
 }
