@@ -1,7 +1,7 @@
 package com.company;
 import java.util.*;
 
-class TreeNode {
+class  TreeNode {
     int val;
     List<TreeNode> children;
 
@@ -89,13 +89,19 @@ public class SubtreeFinder {
         return root;
     }
 
-    public static void printTree(TreeNode node) {
+    public static void printTree(TreeNode node,  int depth) {
         if (node == null) {
             return;
         }
-        System.out.print(node.val + " ");
+        // Print current node value with indentation based on the depth
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ");
+        }
+        System.out.println(node.val);
+
+        // Recursively print children with increased depth
         for (TreeNode child : node.children) {
-            printTree(child);
+            printTree(child, depth + 1);
         }
     }
 }

@@ -65,6 +65,7 @@ public class Solution {
 
         int pivot = arr[(left + right)/2];
         int leftMarker = left;
+
         int rightMarker = right;
 
         // Перекладываем элементы вправо или влево от опорного
@@ -73,7 +74,7 @@ public class Solution {
             while (arr[leftMarker] < pivot) leftMarker++;
             while (arr[rightMarker] > pivot) rightMarker--;
 
-            // Если слева и справо не соответствие и левый меньше правого,
+            // Если слева и справа не соответствие и левый меньше правого,
             // то меняем элементы местами
             if(leftMarker<= rightMarker) {
                 int temp = arr[leftMarker];

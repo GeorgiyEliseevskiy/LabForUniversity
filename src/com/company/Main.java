@@ -131,7 +131,7 @@ public class Main {
                     List<TreeNode> matchingSubtrees = findSubtrees(root, target);
                     System.out.println("Совпадающие поддеревья:");
                     for (TreeNode subtree : matchingSubtrees) {
-                        printTree(subtree);
+                        printTree(subtree, 0);
                         System.out.println();
                     }
                     flagWork = false;
@@ -141,7 +141,7 @@ public class Main {
                     System.out.println("Input ");
                     MyHashTable<String, Integer> myHashTable = new MyHashTable<>();
                     System.out.print("Enter n elements into hashTable: ");
-                    int n = inputIsCorrect();
+                    int n = inputIntWithValidation();
                     String phoneNumber;
                     int value;
 
@@ -152,7 +152,9 @@ public class Main {
                         value = inputIsCorrect();
                         myHashTable.put(phoneNumber, value);
                     }
-
+                    System.out.println("Ввидте ");
+                    phoneNumber = inputCorrectPhoneNumber();
+                    myHashTable.remove(phoneNumber);
                     myHashTable.printTable();
 
                     flagWork = false;
