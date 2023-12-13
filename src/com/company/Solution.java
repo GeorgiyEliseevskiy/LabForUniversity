@@ -3,6 +3,8 @@ package com.company;
 import com.company.model.BinaryTree;
 import com.company.model.MyQueue;
 
+import java.util.Scanner;
+
 public class Solution {
 
     // Solution to the problem:
@@ -94,6 +96,215 @@ public class Solution {
             quickSort(arr, leftMarker, right);
         }
 
+    }
+
+    public static void eighthLab() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter H: ");
+        int H = scanner.nextInt();
+
+        System.out.print("Enter W: ");
+        int W = scanner.nextInt();
+
+        System.out.print("Enter trees quantity: ");
+        int tree = scanner.nextInt();
+
+        System.out.println("\n\n");
+
+        char[][] M = new char[H][W];
+
+        int count = H * W;
+
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                M[i][j] = '.';
+            }
+        }
+
+        while (count >= 0) {
+            int i_index = (int) (Math.random() * H);
+            int j_index = (int) (Math.random() * W);
+
+            for (int i = 0; i < H; i++) {
+                for (int j = 0; j < W; j++) {
+                    if (i == i_index && j == j_index) {
+                        if (M[i][j] != 'O') {
+                            M[i][j] = 'O';
+                            tree--;
+                            break;
+                        } else {
+                            count++;
+                            break;
+                        }
+                    }
+                }
+            }
+            if (tree == 0)
+                break;
+            count--;
+        }
+
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                if (M[i][j] == 'O') {
+                    count = 0;
+                    if (i - 1 >= 0) {
+                        if (i - 2 >= 0) {
+                            if (M[i - 2][j] == '#')
+                                count++;
+                            if (j - 1 >= 0) {
+                                if (M[i - 2][j - 1] == '#')
+                                    count++;
+                            }
+                            if (j + 1 < W) {
+                                if (M[i - 2][j + 1] == '#')
+                                    count++;
+                            }
+                        }
+                        if (j + 1 < W) {
+                            if (M[i - 1][j + 1] == '#' || M[i][j + 1] == '#')
+                                count++;
+                        }
+                        if (j - 1 >= 0) {
+                            if (M[i - 1][j - 1] == '#' || M[i][j - 1] == '#')
+                                count++;
+                        }
+                        if (count == 0) {
+                            M[i - 1][j] = '#';
+                            j++;
+                            if (j == W)
+                                break;
+                        }
+                    }
+                }
+                if (M[i][j] == 'O') {
+                    count = 0;
+                    if (j + 1 < W) {
+                        if (j + 2 < W) {
+                            if (M[i][j + 2] == '#')
+                                count++;
+                            if (i - 1 >= 0) {
+                                if (M[i - 1][j + 2] == '#')
+                                    count++;
+                            }
+                            if (i + 1 < H) {
+                                if (M[i + 1][j + 2] == '#')
+                                    count++;
+                            }
+                        }
+                        if (i - 1 >= 0) {
+                            if (M[i - 1][j + 1] == '#' || M[i - 1][j] == '#')
+                                count++;
+                        }
+                        if (i + 1 < H) {
+                            if (M[i + 1][j + 1] == '#' || M[i + 1][j] == '#')
+                                count++;
+                        }
+                        if (count == 0) {
+                            M[i][j + 1] = '#';
+                            j++;
+                            if (j == W)
+                                break;
+                        }
+                    }
+                }
+                if (M[i][j] == 'O') {
+                    count = 0;
+                    if (i + 1 < H) {
+                        if (i + 2 < H) {
+                            if (M[i + 2][j] == '#')
+                                count++;
+                            if (j - 1 >= 0) {
+                                if (M[i + 2][j - 1] == '#')
+                                    count++;
+                            }
+                            if (j + 1 < W) {
+                                if (M[i + 2][j + 1] == '#')
+                                    count++;
+                            }
+                        }
+                        if (j - 1 >= 0) {
+                            if (M[i + 1][j - 1] == '#' || M[i][j - 1] == '#')
+                                count++;
+                        }
+                        if (j + 1 < W) {
+                            if (M[i + 1][j + 1] == '#' || M[i][j + 1] == '#')
+                                count++;
+                        }
+                        if (count == 0) {
+                            M[i + 1][j] = '#';
+                            j++;
+                            if (j == W)
+                                break;
+                        }
+                    }
+                }
+                if (M[i][j] == 'O') {
+                    count = 0;
+                    if (j - 1 >= 0) {
+                        if (j - 2 >= 0) {
+                            if (M[i][j - 2] == '#')
+                                count++;
+                            if (i - 1 >= 0) {
+                                if (M[i - 1][j - 2] == '#')
+                                    count++;
+                            }
+                            if (i + 1 < H) {
+                                if (M[i + 1][j - 2] == '#')
+                                    count++;
+                            }
+                        }
+                        if (i - 1 >= 0) {
+                            if (M[i - 1][j - 1] == '#' || M[i - 1][j] == '#')
+                                count++;
+                        }
+                        if (i + 1 < H) {
+                            if (M[i + 1][j - 1] == '#' || M[i + 1][j] == '#')
+                                count++;
+                        }
+                        if (count == 0) {
+                            M[i][j - 1] = '#';
+                            j++;
+                            if (j == W)
+                                break;
+                        }
+                    }
+
+
+                }
+            }
+        }
+
+        for (int i = 0; i < W; i++) {
+            for (int j = 0; j < H; j++) {
+                if (M[j][i] == '#')
+                    count++;
+            }
+            System.out.printf("%4d", count);
+            count = 0;
+        }
+        System.out.println("\n");
+
+        for (int i = 0; i < W; i++)
+            System.out.print("====");
+
+        System.out.println("\n");
+
+        for (int i = 0; i < H; i++) {
+            for (int j = 0; j < W; j++) {
+                System.out.printf("%4s", M[i][j]);
+            }
+            for (int j = 0; j < W; j++) {
+                if (M[i][j] == '#')
+                    count++;
+            }
+            System.out.printf("  -- %d", count);
+            count = 0;
+            System.out.println("\n\n");
+        }
+
+        scanner.close();
     }
 
 }

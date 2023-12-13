@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-// Solution to the problem: Дана разреженная матрицы (CCS).
+// Solution to the problem: Дана разреженная матрицы (CS).
 //Переставить столбцы в матрице по возрастанию сумм элементов в этих столбцах.
-
 public class SparseMatrix {
     private ArrayList<Integer> values; // Array of values
     private ArrayList<Integer> rowIndices; //Array of line numbers
@@ -27,14 +26,12 @@ public class SparseMatrix {
         if (row < 0 || row >= numRows || col < 0 || col >= numCols) {
             throw new IllegalArgumentException("Invalid row or column index");
         }
-
         if (value != 0) {
             rowIndices.add(row);
             colIndices.add(col);
             values.add(value);
         }
     }
-
 
     public void sortedMatrixByColumnSum() {
         int[] columnSums = new int[numCols];
@@ -72,9 +69,6 @@ public class SparseMatrix {
         }
     }
 
-
-
-
     public void printMatrix() {
         int currentIndex = 0;
         for (int i = 0; i < numRows; i++) {
@@ -89,7 +83,6 @@ public class SparseMatrix {
                     System.out.print("0 ");
                 }
             }
-
 
             System.out.println();
         }

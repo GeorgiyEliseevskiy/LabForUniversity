@@ -4,7 +4,7 @@ import java.nio.charset.StandardCharsets;
 
 public class MyHashTable<K, V> {
 
-    private static class Entry<K, V> { // Bucket Implementation
+    private static class Entry<K, V> { // Bucket Реализация
         K key;
         V value;
         boolean deleted;
@@ -16,9 +16,9 @@ public class MyHashTable<K, V> {
         }
     }
 
-    //  default table capacity
+    // вместимость таблицы по умолчанию
     private static final int DEFAULT_INITIAL_CAPACITY = 10;
-    // If the table is filled by more than 70, then it expands
+    // Если таблица заполнена более чем на 70, то она расширяется
     private static final double DEFAULT_LOAD_FACTOR = 0.7;
     // arr buckets
     private Entry<K, V>[] table;
@@ -33,12 +33,12 @@ public class MyHashTable<K, V> {
         size = 0;
     }
 
-    // Implementation merge hash code
-    // 1- transformation to byte[]
-    // 2- The current hash value is shifted 8 bits to the left
-    // The keyBytes[i] byte is "truncated" to the lower 8 bits
-    // to get a value in the range from 0 to 255 (0xFF in binary form)
-    // The results of the shift and the "trimmed" byte are combined
+    // Реализация хэш-кода слияния
+    // 1- преобразование в байт[]
+    // 2 - Текущее хэш-значение сдвинуто на 8 бит влево
+    // Байт keyBytes[i] "усекается" до младших 8 бит
+    // чтобы получить значение в диапазоне от 0 до 255 (0xFF в двоичном виде)
+    // Результаты сдвига и "обрезанный" байт объединяются
     private int myHashCode(K key) {
         byte[] keyBytes = key.toString().getBytes(StandardCharsets.UTF_8);
         int hash = 0;
@@ -48,21 +48,20 @@ public class MyHashTable<K, V> {
         return hash;
     }
 
-    // Entering new data into the table
-    //
+    // Ввод новых данных в таблицу
     public void put(K key, V value) {
 
         if (key == null) {
             throw new IllegalArgumentException("Key cannot be null");
         }
 
-        // Checking the capacity of the table
+        // Проверка вместимости таблицы
         if (size >= table.length * DEFAULT_LOAD_FACTOR) {
             resize();
         }
 
         int hash = myHashCode(key);
-        // The initial index is calculated
+        // Вычисляется начальный индекс
         int index = hash % table.length;
         int originalIndex = index;
         int i = 1;

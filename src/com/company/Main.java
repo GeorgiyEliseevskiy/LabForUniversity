@@ -14,6 +14,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.company.Solution.eighthLab;
 import static com.company.SubtreeFinder.*;
 
 
@@ -24,8 +25,6 @@ public class Main {
 
         boolean flagWork = true;
         char answerForPanel;
-
-
         while (flagWork) {
             System.out.println("Hello. Choice necessary decision \n" +
                     "1- First Laboratory work" +
@@ -172,7 +171,10 @@ public class Main {
                     Arrays.stream(arr).forEach(System.out::println);
                     flagWork = false;
                     break;
-
+                case '7':
+                    eighthLab();
+                    flagWork = false;
+                    break;
                 default:
                     System.out.println("Incorrect number laboratory");
                     flagWork = false;
